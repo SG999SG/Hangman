@@ -1,7 +1,8 @@
 import random
 
 def get_word():
-    return word_list[random.randint(0, len(word_list))]
+    word = word_list[random.randint(0, len(word_list))]
+    return word.upper()
 
 def display_hangman(tries):
     stages = [  # финальное состояние: голова, торс, обе руки, обе ноги
@@ -77,12 +78,28 @@ def display_hangman(tries):
     ]
     return stages[tries]
 
+def input_word:
+    while True:
+        print('Введите букву или слово')
+        s = input().upper()
+        if s.isalpha():
+            return s
+
 def play(word):
     word_completion = '_' * len(word)  # строка, содержащая символы _ на каждую букву задуманного слова
     guessed = False  # сигнальная метка
     guessed_letters = []  # список уже названных букв
     guessed_words = []  # список уже названных слов
     tries = 6  # количество попыток
+
+    print('Давайте играть в угадайку слов!')
+    while word_completion != word or tries != 0:
+        print(display_hangman(tries))
+        print(word_completion)
+        guess = input_word()
+
+        tries -= 1
+    print(display_hangman(tries))
 
 word_list = ['год', 'человек', 'время', 'дело', 'жизнь', 'день', 'рука', 'раз', 'работа', 'слово', 'место', 'лицо',
             'друг', 'глаз', 'вопрос', 'дом', 'сторона', 'страна', 'мир', 'случай', 'голова', 'ребенок', 'сила', 'конец',
@@ -187,4 +204,6 @@ word_list = ['год', 'человек', 'время', 'дело', 'жизнь',
             'философия', 'мощность', 'обязательство', 'уход', 'горло', 'кризис', 'указание', 'плата', 'яблоко',
             'препарат', 'действительность', 'москвич', 'остаток', 'изображение', 'сделка', 'сочинение',
             'покупатель', 'танк', 'затрата', 'строка', 'единица']
+
+play(get_word())
 
